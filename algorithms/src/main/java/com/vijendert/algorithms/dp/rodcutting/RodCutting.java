@@ -6,7 +6,8 @@ public class RodCutting {
 
 	public static void main(String[] args) {
 		RodCutting rc = new RodCutting();
-		int[] prices = { 2, 5, 70, 3 };
+		// int[] prices = { 1, 5, 8, 9, 10, 17, 17, 20 };
+		int[] prices = { 2, 5, 7, 3 };
 		// int result = rc.cutRodRecursive(prices, 4);
 		// int result = rc.cutRod(prices, 4);
 		// System.out.println(result);
@@ -82,11 +83,21 @@ public class RodCutting {
 				}
 			}
 		}
+		findCuttingPoint(dpTable, prices, len);
 		System.out.println("The max money that could be made is : " + dpTable[pricesVal][len]);
 	}
 
-	public void findCuttingPoint() {
-
+	public void findCuttingPoint(int[][] dpTable, int[] prices, int len) {
+		int m = prices.length;
+		int n = len;
+		while (m != 0 && n != 0) {
+			if (dpTable[m][n] == dpTable[m - 1][n]) {
+				m = m - 1;
+			} else {
+				n = n - m;
+				System.out.println("cut were made at " + m);
+			}
+		}
 	}
 
 }
